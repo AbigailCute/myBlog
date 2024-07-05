@@ -1,18 +1,22 @@
 {
+  "$schema": "https://json.schemastore.org/jsconfig",
   "name": "my-blog",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --open",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.4.29"
+    "vue": "^3.4.29",
+    "vue-router": "^4.4.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",
+    "less": "^4.2.0",
+    "less-loader": "^12.2.0",
     "vite": "^5.3.1"
   }
 }
