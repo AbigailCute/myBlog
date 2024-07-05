@@ -10,6 +10,11 @@ const routes = [
         name: 'login',
         component: () => import("@/views/login/index.vue"),
     },
+    {
+        path: '/index',
+        name: 'index',
+        component: () => import("@/views/index/index.vue"),
+    },
 ]
 
 export const router = createRouter({

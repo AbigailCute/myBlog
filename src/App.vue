@@ -1,17 +1,10 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
   <div class="app" id="app">
-    <div class="content">
-      <router-view></router-view>
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
 <style lang="less" scoped>
-// #app {
-//   .content {
-//   }
-// }
 </style>
