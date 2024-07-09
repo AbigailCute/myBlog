@@ -1,4 +1,4 @@
-import { createMemoryHistory, createRouter } from 'vue-router'
+import { createWebHashHistory, createMemoryHistory, createRouter } from 'vue-router'
 
 const routes = [
     {
@@ -6,19 +6,32 @@ const routes = [
         redirect: "/login",
     },
     {
-        path: '/login',
         name: 'login',
+        path: '/login',
         component: () => import("@/views/login/index.vue"),
     },
     {
-        path: '/index',
-        name: 'index',
-        component: () => import("@/views/index/index.vue"),
+        name: 'layout',
+        path: '/layout',
+        component: () => import("@/layout/layout.vue"),
+        children: [
+            {
+                name: "index",
+                path: "/index",
+                component: () => import("@/views/index/index.vue"),
+            },
+            {
+                name: "news",
+                path: "/news",
+                component: () => import("@/views/news/index.vue"),
+            },
+        ]
     },
 ]
 
 export const router = createRouter({
-    history: createMemoryHistory(),
+    // history: createMemoryHistory(),
+    history: createWebHashHistory(),
     routes,
 })
 

@@ -9,6 +9,10 @@ import {
     NForm,
     NInput,
     NFormItem,
+    NMenu,
+    NIcon,
+    NImage,
+    NGradientText,
 } from 'naive-ui'
 
 const naive = create({
@@ -19,6 +23,10 @@ const naive = create({
         NForm,
         NInput,
         NFormItem,
+        NMenu,
+        NIcon,
+        NImage,
+        NGradientText,
     ]
 })
 

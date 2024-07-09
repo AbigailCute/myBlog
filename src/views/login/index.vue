@@ -4,12 +4,12 @@
       <n-space justify="center">
         <n-avatar size="large" :src="userAvatarImage" />
       </n-space>
-      <n-form class="login-form" ref="formRef" :model="model" :rules="rules" label-placement="left">
+      <n-form class="login-form" ref="formRef" :model="form" :rules="rules" label-placement="left">
         <n-form-item path="account" label="">
-          <n-input v-model:value="model.age" @keydown.enter.prevent placeholder="输入账号" />
+          <n-input :account="form.account" placeholder="账号" />
         </n-form-item>
         <n-form-item path="password" label="">
-          <n-input v-model:value="model.password" type="password" @keydown.enter.prevent placeholder="输入密码" />
+          <n-input :password="form.password" type="password" placeholder="密码" show-password-on="mousedown" />
         </n-form-item>
         <n-form-item class="login-button">
           <n-button type="info" @click="$router.push('/index')">登录</n-button>
@@ -19,36 +19,46 @@
   </div>
 </template>
 
-<script setup lang="js">
-import { ref, reactive, toRefs, onMounted } from 'vue'
+<script lang="js">
+import { ref, reactive, toRefs, onMounted, defineComponent } from 'vue'
 import userAvatarImage from '@/assets/images/saber.png'
 
-const formRef = ref(null);
-const model = ref({
-  age: null,
-  password: null,
-  reenteredPassword: null
-})
-const rules = {
-  age: [
-    {
-      required: true,
-      validator(rule, value) {
-        if (!value) {
-          return new Error("需要账号");
+export default defineComponent({
+  setup() {
+    const formRef = ref(null);
+    const form = ref({
+      account: null,
+      password: null,
+      reenteredPassword: null
+    })
+    const rules = {
+      age: [
+        {
+          required: true,
+          validator(rule, value) {
+            if (!value) {
+              return new Error("需要账号");
+            }
+            return true;
+          },
+          trigger: ["input", "blur"]
         }
-        return true;
-      },
-      trigger: ["input", "blur"]
+      ],
+      password: [
+        {
+          required: true,
+          message: "请输入密码"
+        }
+      ],
     }
-  ],
-  password: [
-    {
-      required: true,
-      message: "请输入密码"
+    return {
+      formRef,
+      form,
+      rules,
+      userAvatarImage,
     }
-  ],
-}
+  }
+})
 </script>
 
 <style scoped lang="less">
