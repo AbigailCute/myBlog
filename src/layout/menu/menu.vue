@@ -1,6 +1,6 @@
 <template>
     <div>
-        <n-menu v-model:value="activeKey" :options="menuOptions" mode="horizontal" responsive
+        <n-menu :default-value="activeKey" :options="menuOptions" mode="horizontal" responsive
             @update:value="handleUpdateValue" />
     </div>
 </template>
@@ -22,7 +22,6 @@ export default defineComponent({
         return {
             ...props,
             handleUpdateValue(key, item) {
-                console.log('key,item :>> ', key, item);
             }
         }
     },

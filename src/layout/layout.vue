@@ -3,7 +3,8 @@
         <!-- 图片 -->
         <n-image width="200" height="40" :src="qianJi" :preview-disabled="true" @click="imageClick" />
         <n-gradient-text gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)">
-            小天才
+            <!-- 小天才 -->
+            layout
         </n-gradient-text>
         <!-- 搜索框 -->
         <n-input size="large" round placeholder="" style="max-width: 20%">
@@ -28,63 +29,71 @@
 
 <script lang="js">
 import { ref, reactive, toRefs, onMounted, defineComponent, h } from 'vue'
-import { RouterLink } from 'vue-router'
 import qianJi from '@/assets/images/千棘.png'
 import Menu from '@/layout/menu/menu.vue'
 import router from '@/router'
+import { RouterLink } from 'vue-router'
 
 export default defineComponent({
     components: { Menu },
     setup() {
-        const activeKey = ref("1")
-        const menuOptions = reactive([
+        const activeKey = ref('0')
+        const menuOptions = [
             {
-                label: () =>
-                    h(
-                        "a",
-                        {
-                            href: "#/index",
-                            target: "_self",
-                        },
-                        "首页"
-                    ),
-                key: "1",
-                disabled: false,
-                children: [],
+                label: () => h(
+                    RouterLink,
+                    {
+                        to: {
+                            name: "index",
+                        }
+                    },
+                    { default: () => "首页" }
+                ),
+                key: "0",
             },
             {
                 label: () => h(
-                    "a",
+                    RouterLink,
                     {
-                        href: "#/news",
-                        target: "_self",
+                        to: {
+                            name: "news",
+                        }
                     },
-                    "新闻"
+                    { default: () => "新闻" }
                 ),
-                // label:"新闻",
-                key: "2",
-                // onClick: () => router.push('/news'),
-                disabled: false,
+                key: "1",
             },
             {
-                label: "问答",
-                key: "3",
-                disabled: false,
-                children: [],
+                label: () => h(
+                    RouterLink,
+                    {
+                        to: {
+                            name: "answer",
+                        }
+                    },
+                    { default: () => "问答" }
+                ),
+                key: "2",
             },
             {
                 label: "账户",
-                key: "4",
-                disabled: false,
+                key: "3",
                 children: [
                     {
-                        label: "登出",
-                        key: "4-1",
-                        disabled: false,
+                        label: () => h(
+                            RouterLink,
+                            {
+                                to: {
+                                    name: "login",
+                                }
+                            },
+                            { default: () => "登出" }
+                        ),
+                        key: "3-0",
                     }
-                ],
+                ]
             },
-        ]);
+        ];
         const imageClick = () => {
         }
         return {
@@ -107,13 +116,15 @@ export default defineComponent({
 }
 
 .main-content {
+    min-width: 40vw;
+    height: calc(100% - 100px);
     display: flex;
     justify-content: center;
     align-items: center;
     // padding: 40px 100px;
-    margin: 40px 300px;
+    margin: 2vh 10vw;
     background-color: grey;
-    height: calc(100% - 150px);
+
 }
 
 .n-gradient-text {
